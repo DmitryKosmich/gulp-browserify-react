@@ -12,6 +12,7 @@
 
     var path = {
         HTML: 'src/index.html',
+        SCRIPTS: './src/scripts/**/*.js',
         MINIFIED_OUT: 'build.min.js',
         OUT: 'build.js',
         DEST: 'dist',
@@ -27,19 +28,32 @@
 
     gulp.task('watch', function() {
         gulp.watch(path.HTML, ['copy']);
+        gulp.watch(path.SCRIPTS, ['develop']);
 
-        var watcher  = watchify(browserify({
+//        var watcher  = watchify(browserify({
+//            entries: [path.ENTRY_POINT],
+//            transform: [reactify],
+//            debug: true,
+//            cache: {}, packageCache: {}, fullPaths: true
+//        }));
+//
+//        return watcher.on('update', function () {
+//            watcher.bundle()
+//                .pipe(source(path.OUT))
+//                .pipe(gulp.dest(path.DEST_SRC));
+//            console.log('Updated');
+//        })
+//            .bundle()
+//            .pipe(source(path.OUT))
+//            .pipe(gulp.dest(path.DEST_SRC));
+    });
+
+    gulp.task('develop', function(){
+        browserify({
             entries: [path.ENTRY_POINT],
             transform: [reactify],
             debug: true,
             cache: {}, packageCache: {}, fullPaths: true
-        }));
-
-        return watcher.on('update', function () {
-            watcher.bundle()
-                .pipe(source(path.OUT))
-                .pipe(gulp.dest(path.DEST_SRC));
-            console.log('Updated');
         })
             .bundle()
             .pipe(source(path.OUT))
@@ -53,7 +67,7 @@
         })
             .bundle()
             .pipe(source(path.MINIFIED_OUT))
-            .pipe(streamify(uglify(path.MINIFIED_OUT)))
+            .pipe(streamify(uglify(gulp.dest(path.MINIFIED_OUT))))
             .pipe(gulp.dest(path.DEST_BUILD));
     });
 
@@ -67,6 +81,6 @@
 
     gulp.task('production', ['replaceHTML', 'build']);
 
-    gulp.task('default', ['watch']);
+    gulp.task('default', ['copy', 'develop', 'watch']);
 
 })();
