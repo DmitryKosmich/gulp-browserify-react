@@ -4,7 +4,8 @@
     var React = require('React');
     var OrderList = require('../order/OrderList'),
         DataProvider = require('../../services/DataProvider'),
-        Constant = require('../../services/Constant');
+        Constant = require('../../services/Constant'),
+        Page = require('../Page');
 
     module.exports = React.createClass({
 
@@ -23,10 +24,10 @@
 
         render: function () {
             return (
-                <div className="page">
+                <Page>
                     <h1>Orders</h1>
                     <OrderList data={this.state.data} />
-                </div>
+                </Page>
             );
         }
     });

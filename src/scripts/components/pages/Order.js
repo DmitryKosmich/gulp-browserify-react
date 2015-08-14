@@ -4,7 +4,8 @@
     var React = require('React');
     var OrderList = require('../order/OrderList'),
         DataProvider = require('../../services/DataProvider'),
-        Constant = require('../../services/Constant');
+        Constant = require('../../services/Constant'),
+        Page = require('../Page');
 
     module.exports = React.createClass({
 
@@ -13,7 +14,7 @@
         },
 
         componentDidMount: function() {
-            var url = './test-server/order/orders/1.json';
+            var url = './test-server/order/orders/' + this.props.urlParams.id + '.json';
             DataProvider.get(url, function(data) {
                 this.setState({data: data});
             }.bind(this), function(status, statusText) {
@@ -22,13 +23,14 @@
         },
 
         render: function () {
+            var url = Constant.ORDER_EDIT_URL +'?' + 'id'+ '=' + this.state.data.id;
             return (
-                <div className="page">
-                    <h1>{this.state.data.client}</h1>
+                <Page>
+                    <h1>{this.state.data.client}</h1><span><a href={url}>Edit</a></span>
                     <h2>{this.state.data.header}</h2>
                     <h3>{this.state.data.date}</h3>
                     <p>{this.state.data.description}</p>
-                </div>
+                </Page>
             );
         }
     });

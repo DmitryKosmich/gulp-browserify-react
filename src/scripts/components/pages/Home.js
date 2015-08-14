@@ -1,11 +1,12 @@
 (function (module) {
     'use strict';
 
-    var React = require('React');
+    var React = require('React'),
+        Page = require('../Page');
 
     module.exports = React.createClass({
         render: function () {
-            return <h2>Home</h2>;
+            return <Page><h2>Home</h2></Page>;
         }
     });
 

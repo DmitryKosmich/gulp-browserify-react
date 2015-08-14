@@ -5,27 +5,24 @@
         Home = require('./components/pages/Home'),
         Orders = require('./components/pages/Orders'),
         Order = require('./components/pages/Order'),
-        Constant = require('./services/Constant'),
+        OrderEdit = require('./components/pages/OrderEdit'),
+        Navigation = require('./components/Navigation'),
         Router = require('./services/Router');
 
     Router
-        .route('/orders/[0-9]+', Order)
         .route('/orders', Orders)
+        .route('/order-edit', OrderEdit)
+        .route('/order', Order)
         .defaultRoute(Home);
 
     var App = React.createClass({
         render: function () {
-            var Child = Router.page(this.props.route);
+            var View = Router.page(this.props.route);
+            var urlParams = Router.getUrlParams(this.props.route);
             return (
-                <div>
-                    <header>Test application</header>
-                    <nav>
-                        <ul>
-                            <li><a href={Constant.HOME_URL}>Home</a></li>
-                            <li><a href={Constant.ORDERS_URL}>Orders</a></li>
-                        </ul>
-                    </nav>
-                    <Child/>
+                <div className="app">
+                    <Navigation />
+                    <View urlParams={urlParams} />
                 </div>
             );
         }

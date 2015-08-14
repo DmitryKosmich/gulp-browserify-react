@@ -2,6 +2,6 @@
     "id": 1,
     "date": "13-08-15",
     "header": "Very interesting order 2",
-    "client": "Alexander Morozov",
+    "client": "Iosif Stalin",
     "description": "In the above example, instances of Avatar own instances of ProfilePic and ProfileLink. In React, an owner is the component that sets the props of other components. More formally, if a component X is created in component Y's render() method, it is said that X is owned by Y. As discussed earlier, a component cannot mutate its props — they are always consistent with what its owner sets them to. This key property leads to UIs that are guaranteed to be consistent."
 }
