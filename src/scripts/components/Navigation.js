@@ -10,8 +10,8 @@
             return (
                 <nav className="page-nav">
                     <ul>
-                        <li><a href={Constant.HOME_URL}>Home</a></li>
-                        <li><a href={Constant.ORDERS_URL}>Orders</a></li>
+                        <li><h1><a href={Constant.HOME_URL}>Home</a></h1></li>
+                        <li><h1><a href={Constant.ORDERS_URL}>Orders</a></h1></li>
                     </ul>
                 </nav>
             );

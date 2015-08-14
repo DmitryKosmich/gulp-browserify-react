@@ -25,7 +25,6 @@
         render: function () {
             return (
                 <Page>
-                    <h1>Orders</h1>
                     <OrderList data={this.state.data} />
                 </Page>
             );
